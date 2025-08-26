@@ -94,20 +94,25 @@ function initializeApp() {
 // Load story data from JSON file
 function loadStoryData(storyTitle) {
     fetch(`${storyTitle}.json`)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status} for ${storyTitle}.json`);
+            }
+            return response.json();
+        })
         .then(data => {
             state.storyData = data.storyDialogue;
             state.characters = data.characters;
             state.chapterMusic = data.chapterMusic;
-            
+
             // Set story title
             elements.storyTitle.textContent = data.storyTitle;
-            
+
             // Set theme if specified
             if (data.theme) {
                 document.getElementById('themeStylesheet').href = data.theme;
             }
-            
+
             // Initialize the rest of the app
             setupEventListeners();
             setupCharacterSprites();
@@ -115,8 +120,8 @@ function loadStoryData(storyTitle) {
             syncVolumes();
         })
         .catch(error => {
-            console.error('Error loading story data:', error);
-            // Fallback to default data
+            console.error(`Error loading story data for ${storyTitle}.json:`, error);
+            alert(`Could not load story file: ${storyTitle}.json\nCheck filename or JSON format.`);
             loadFallbackData();
         });
 }
@@ -608,4 +613,5 @@ function syncVolumes() {
 }
 
 // Initialize when DOM is loaded
+
 document.addEventListener('DOMContentLoaded', initializeApp);
