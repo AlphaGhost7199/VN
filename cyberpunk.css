@@ -1,0 +1,259 @@
+/* cyberpunk.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --neon-text-color: #00ffff;
+    --neon-border-color: #00ffff;
+    --background-color: #0a0e17;
+    --secondary-bg-color: #1a1e27;
+    --text-color: #e0e0e0;
+    --highlight-color: #ff00de;
+}
+
+body {
+    font-family: 'Share Tech Mono', monospace;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.home-container {
+    background-image: url('https://designerapp.officeapps.live.com/designerapp/document.ashx?path=/6b440347-5010-4b32-979b-54187a96045b/DallEGeneratedImages/dalle-c085f924-8b91-4db7-bf27-51f5d2ab498a0251673890537988666400.jpg');
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--neon-text-color);
+    text-shadow: 0 0 10px var(--neon-text-color);
+    animation: flicker 1.5s infinite alternate;
+}
+
+.button {
+    background-color: transparent;
+    color: var(--neon-text-color);
+    border: 2px solid var(--neon-border-color);
+    text-shadow: 0 0 5px var(--neon-text-color);
+    box-shadow: 0 0 10px var(--neon-border-color);
+}
+
+.button:hover {
+    background-color: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 20px var(--neon-border-color);
+}
+
+input[type="range"] {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid var(--neon-border-color);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    background: var(--neon-text-color);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+input[type="range"]::-moz-range-thumb {
+    background: var(--neon-text-color);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.dialogue-container, .overlay-content {
+    background-color: rgba(10, 14, 23, 0.9);
+    border: 2px solid var(--neon-border-color);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.dialogue-header, .overlay-header {
+    background-color: var(--secondary-bg-color);
+    color: var(--neon-text-color);
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.dialogue-header::before, .overlay-header::before {
+    content: attr(data-text);
+    position: absolute;
+    left: -2px;
+    text-shadow: 2px 0 var(--highlight-color);
+    top: 0;
+    color: var(--neon-text-color);
+    background: var(--secondary-bg-color);
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch 2s infinite linear alternate-reverse;
+}
+
+.dialogue-header::after, .overlay-header::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    text-shadow: -2px 0 var(--highlight-color);
+    top: 0;
+    color: var(--neon-text-color);
+    background: var(--secondary-bg-color);
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch 3s infinite linear alternate-reverse;
+}
+
+.dialogue-content {
+    color: var(--text-color);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.option-btn {
+    background-color: rgba(0, 255, 255, 0.1);
+    border: 1px solid var(--neon-border-color);
+    color: var(--neon-text-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.option-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background-color: var(--neon-border-color);
+    transition: all 0.5s ease;
+}
+
+.option-btn:hover::before {
+    left: 100%;
+}
+
+.option-btn:hover {
+    background-color: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.menu-icon {
+    color: var(--neon-text-color);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.overlay {
+    background-color: rgba(10, 14, 23, 0.8);
+}
+
+.close-btn {
+    color: var(--neon-text-color);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.settings-option label {
+    color: var(--neon-text-color);
+}
+
+.end-message {
+    color: var(--neon-text-color);
+    text-shadow: 0 0 10px var(--neon-text-color);
+    animation: flicker 1.5s infinite alternate;
+}
+
+/* Scanline effect */
+.home-container::after, body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none;
+    animation: scanline 0.1s linear infinite;
+}
+
+/* Flickering neon effect */
+@keyframes flicker {
+    0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+        opacity: 0.99;
+    }
+    20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes scanline {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 4px;
+    }
+}
+
+@keyframes glitch {
+    0% {
+        clip: rect(44px, 9999px, 56px, 0);
+    }
+    5% {
+        clip: rect(32px, 9999px, 94px, 0);
+    }
+    10% {
+        clip: rect(54px, 9999px, 85px, 0);
+    }
+    15% {
+        clip: rect(32px, 9999px, 10px, 0);
+    }
+    20% {
+        clip: rect(10px, 9999px, 30px, 0);
+    }
+    25% {
+        clip: rect(8px, 9999px, 50px, 0);
+    }
+    30% {
+        clip: rect(16px, 9999px, 20px, 0);
+    }
+    35% {
+        clip: rect(15px, 9999px, 70px, 0);
+    }
+    40% {
+        clip: rect(28px, 9999px, 10px, 0);
+    }
+    45% {
+        clip: rect(50px, 9999px, 40px, 0);
+    }
+    50% {
+        clip: rect(30px, 9999px, 60px, 0);
+    }
+    55% {
+        clip: rect(44px, 9999px, 10px, 0);
+    }
+    60% {
+        clip: rect(20px, 9999px, 100px, 0);
+    }
+    65% {
+        clip: rect(40px, 9999px, 30px, 0);
+    }
+    70% {
+        clip: rect(50px, 9999px, 50px, 0);
+    }
+    75% {
+        clip: rect(30px, 9999px, 20px, 0);
+    }
+    80% {
+        clip: rect(10px, 9999px, 40px, 0);
+    }
+    85% {
+        clip: rect(25px, 9999px, 80px, 0);
+    }
+    90% {
+        clip: rect(70px, 9999px, 20px, 0);
+    }
+    95% {
+        clip: rect(5px, 9999px, 10px, 0);
+    }
+    100% {
+        clip: rect(25px, 9999px, 40px, 0);
+    }
+}

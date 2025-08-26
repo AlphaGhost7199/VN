@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Story Engine</title>
+    <link rel="stylesheet" href="basestyle.css">
+    <link rel="stylesheet" href="cyberpunk.css" id="themeStylesheet">
+</head>
+<body>
+    <!-- HOME SCREEN -->
+    <div class="screen home-container" id="homeScreen">
+        <div class="glass-overlay"></div>
+        <div class="content">
+            <h1 id="storyTitle">CYBER RUNNER</h1>
+            <div class="audio-toggles">
+                <button id="toggleBgmBtn" class="button">BGM: On</button>
+                <button id="toggleSfxBtn" class="button">SFX: On</button>
+            </div>
+            <button id="startGameBtn" class="button">Start Story</button>
+        </div>
+    </div>
+
+    <!-- MENU ICON -->
+    <div id="menuIcon" class="menu-icon">☰</div>
+
+    <!-- MENU OVERLAY -->
+    <div class="overlay" id="menuOverlay">
+        <div class="overlay-content">
+            <div class="overlay-header">
+                <span data-text="MENU">MENU</span>
+                <button class="close-btn" data-close="menuOverlay">×</button>
+            </div>
+            <button id="settingsBtn">Settings</button>
+            <button id="homeBtn">Home</button>
+            <button id="fullscreenBtn">Fullscreen</button>
+        </div>
+    </div>
+
+    <!-- SETTINGS OVERLAY -->
+    <div class="overlay" id="settingsOverlay">
+        <div class="overlay-content">
+            <div class="overlay-header">
+                <span data-text="SETTINGS">SETTINGS</span>
+                <button class="close-btn" data-close="settingsOverlay">×</button>
+            </div>
+            <div class="settings-option">
+                <label for="textSpeed">Text Speed:</label>
+                <input type="range" id="textSpeed" min="1" max="100" value="50">
+            </div>
+            <div class="settings-option">
+                <label for="autoSpeed">Auto Speed:</label>
+                <input type="range" id="autoSpeed" min="1" max="100" value="50">
+            </div>
+            <div class="settings-option">
+                <label for="sfxVolume">SFX Volume:</label>
+                <input type="range" id="sfxVolume" min="0" max="100" value="50">
+            </div>
+            <div class="settings-option">
+                <label for="bgmVolume">BGM Volume:</label>
+                <input type="range" id="bgmVolume" min="0" max="100" value="50">
+            </div>
+        </div>
+    </div>
+
+    <!-- STORY SCREEN -->
+    <div class="screen story-container" id="storyScreen">
+        <div id="characterSpriteContainer">
+            <img id="leftCharacterSprite" class="character-sprite left-sprite" src="" alt="Left Character">
+            <img id="rightCharacterSprite" class="character-sprite right-sprite" src="" alt="Right Character">
+        </div>
+        <div id="effectOverlay" class="effect-overlay"></div>
+        
+        <!-- DIALOGUE CONTAINER -->
+        <div class="dialogue-container">
+            <div class="dialogue-header">
+                <span id="characterName" data-text="NETRUNNER">NETRUNNER</span>
+            </div>
+            <div class="dialogue-content">
+                <p id="typedText"></p>
+            </div>
+            <div class="dialogue-options" id="dialogueOptions"></div>
+        </div>
+    </div>
+    
+    <!-- OVERLAY CONTAINER -->
+    <div id="overlayContainer" class="overlay-container">
+        <div class="overlay-content">
+            <div class="overlay-header">
+                <span id="overlayTitle">Overlay Title</span>
+                <button id="closeOverlay" class="close-btn">&times;</button>
+            </div>
+            <iframe id="overlayFrame"></iframe>
+        </div>
+    </div>
+
+    <!-- END SCREEN -->
+    <div class="screen end-container" id="endScreen">
+        <div class="end-message">The End. What will you do next?</div>
+        <div class="dialogue-container">
+            <div class="dialogue-options" id="endOptions"></div>
+        </div>
+    </div>
+
+    <!-- BACKGROUND MUSIC -->
+    <audio id="backgroundMusic" loop>
+        <source src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- SCRIPTS -->
+    <script src="audio.js"></script>
+    <script src="screen.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+/* basestyle.css */
+:root {
+    --primary-bg-color: #ffffff;
+    --primary-text-color: #333333;
+    --secondary-bg-color: #e0e0e0;
+    --border-color: #000000;
+    --hover-bg-color: #f0f0f0;
+    --overlay-bg-color: rgba(0, 0, 0, 0.5);
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+}
+
+.glass-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 14, 23, 0.5);
+    backdrop-filter: blur(5px) brightness(0.8) saturate(1.2) contrast(1.1);
+    -webkit-backdrop-filter: blur(5px) brightness(0.8) saturate(1.2) contrast(1.1);
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.button {
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    margin: 1rem;
+    background-color: var(--secondary-bg-color);
+    color: var(--primary-text-color);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.audio-toggles {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    gap: 20px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-bg-color);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.overlay-content {
+    position: relative;
+    padding: 20px;
+    width: 80%;
+    height: 80%;
+    margin: 5% auto;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.overlay-header {
+    background-color: var(--secondary-bg-color);
+    color: var(--primary-text-color);
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.menu-icon {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.settings-option {
+    margin-bottom: 15px;
+}
+
+.settings-option label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="range"] {
+    width: 100%;
+    height: 10px;
+    background: var(--secondary-bg-color);
+    outline: none;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+#characterSpriteContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.character-sprite {
+    position: absolute;
+    bottom: 30%;
+    max-height: 85%;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.character-sprite.active {
+    opacity: 1;
+}
+
+.left-sprite {
+    left: 2%;
+}
+
+.left-sprite.active {
+    animation: slideInLeft 0.5s ease-out;
+}
+
+.right-sprite {
+    right: 2%;
+}
+
+.right-sprite.active {
+    animation: slideInRight 0.5s ease-out;
+}
+
+.story-container {
+    position: relative;
+    z-index: 2;
+}
+
+.dialogue-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* pushes text to top, options to bottom */
+    width: 98%;
+    height: 35%;
+    position: fixed;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    background-color: rgba(10, 14, 23, 0.9);
+    border: 2px solid var(--neon-border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    padding-bottom: 8px;
+}
+
+.dialogue-header {
+    background-color: var(--secondary-bg-color);
+    color: var(--primary-text-color);
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dialogue-content {
+	flex: 1;
+    padding: 15px 20px 10px;
+    color: var(--text-color);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 60px;
+    overflow-y: auto;
+}
+
+.dialogue-options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 6px 12px;
+    margin-top: auto; /* ensures it sits at bottom */
+    flex-wrap: wrap;  /* helps if screen is narrow */
+}
+
+.option-btn {
+    flex: 1;
+    background-color: var(--secondary-bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--primary-text-color);
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-btn:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.effect-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    display: none;
+}
+
+.overlay-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+}
+
+#overlayFrame {
+    width: 100%;
+    height: calc(100% - 40px);
+    border: none;
+}
+
+.end-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-bg-color);
+}
+
+.end-message {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .button {
+        font-size: 1.2rem;
+        padding: 0.8rem 1.6rem;
+    }
+    
+    .dialogue-container {
+        width: 95%;
+        height: 35%;
+        bottom: 3%;
+    }
+    
+    .dialogue-content {
+        padding: 12px 15px 8px;
+        font-size: 14px;
+        max-height: 100px;
+    }
+    
+    .dialogue-options {
+        padding: 3px 15px 8px;
+    }
+    
+    .character-sprite {
+        max-height: 70%;
+    }
+    
+    .overlay-content {
+        width: 90%;
+        height: 85%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .button {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+    
+    .audio-toggles {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .dialogue-header {
+        font-size: 16px;
+        padding: 8px;
+    }
+    
+    .dialogue-container {
+        width: 96%;
+        height: 38%;
+        bottom: 2%;
+    }
+    
+    .dialogue-content {
+        padding: 10px 12px 5px;
+        font-size: 13px;
+        max-height: 90px;
+    }
+    
+    .dialogue-options {
+        padding: 2px 10px 6px;
+        flex-direction: column;
+        gap: 8px;
+    }
+}
